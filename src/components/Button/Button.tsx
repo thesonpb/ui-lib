@@ -16,18 +16,18 @@ declare type ButtonProps = {
     onClick?: React.MouseEventHandler<HTMLElement>;
 } & Omit<React.ButtonHTMLAttributes<any>, "type">;
 
-const Button = ({ type, ...props }: ButtonProps) => {
+const Button = ({ type, className, ...props }: ButtonProps) => {
     const { children, disabled } = props;
 
     /** Override Defaults */
 
     return (
         <button
-            className={`ui-btn ${type === "primary" ? "ui-btn-primary" : ""} ${
-                type === "secondary" ? "ui-btn-secondary" : ""
-            } ${type === "outline" ? "ui-btn-outline" : ""} ${
-                disabled ? "ui-btn-disabled" : ""
-            }`}
+            className={`${className} ui-btn ${
+                type === "primary" || !type ? "ui-btn-primary" : ""
+            } ${type === "secondary" ? "ui-btn-secondary" : ""} ${
+                type === "outline" ? "ui-btn-outline" : ""
+            } ${disabled ? "ui-btn-disabled" : ""}`}
             {...props}
         >
             {children}
